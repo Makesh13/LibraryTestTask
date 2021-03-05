@@ -1,5 +1,4 @@
-﻿using Common;
-using Library.Auth.Api.Domain;
+﻿using Library.Auth.Api.Domain;
 using Library.Auth.Api.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +12,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
+using Common;
 
 namespace Library.Auth.Api.Controllers
 {
