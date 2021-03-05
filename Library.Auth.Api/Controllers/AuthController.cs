@@ -1,4 +1,4 @@
-﻿using Library.Auth.Api.Domain;
+﻿
 using Library.Auth.Api.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -8,11 +8,15 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 using Common;
+using Common.Models;
+
 
 namespace Library.Auth.Api.Controllers
 {
@@ -20,11 +24,12 @@ namespace Library.Auth.Api.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly AuthContext dbContext;
+        
+        private readonly ApplicationContext dbContext;
         private readonly IOptions<AuthOptions> authOptions;
         //не стал делать отдельную прослойку для работы с контекстом
         //инжектировал его напрямую
-        public AuthController(AuthContext dbContext, IOptions<AuthOptions> options)
+        public AuthController(ApplicationContext dbContext, IOptions<AuthOptions> options)
         {
             this.dbContext = dbContext;
             this.authOptions = options;
@@ -52,9 +57,12 @@ namespace Library.Auth.Api.Controllers
         //Проверяем логин и пароль юзера
         private Account Authenticate(string login, string password)
         {
-            var hashPassword = new PasswordHasher<Account>().HashPassword(null, password);
-            //Тут нужно захешировать пароль, сделаю завтра
-            return dbContext.Accounts.SingleOrDefault(x => x.UserName == login && x.PasswordHash == hashPassword);
+            using (SHA256 mySha256 = SHA256.Create())
+            {
+                var hashPassword = string.Concat(mySha256.ComputeHash(Encoding.UTF8.GetBytes(password)).Select(x => x.ToString("X2")));
+                //Тут нужно захешировать пароль, сделаю завтра
+                return dbContext.Accounts.SingleOrDefault(u => u.UserName == login && u.PasswordHash == hashPassword);
+            }
         }
 
         //Генерируем токен

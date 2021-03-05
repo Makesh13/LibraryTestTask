@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Resource.Api", "Lib
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Auth.Api", "Library.Auth.Api\Library.Auth.Api.csproj", "{7818BF2C-4BB9-4088-81DA-5092E1E0FE9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{9AF684BF-D5A3-48E3-A65E-30EA091B9A89}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{378C0473-3B1E-4B68-BCAF-680EDC83D533}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{7818BF2C-4BB9-4088-81DA-5092E1E0FE9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7818BF2C-4BB9-4088-81DA-5092E1E0FE9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7818BF2C-4BB9-4088-81DA-5092E1E0FE9E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9AF684BF-D5A3-48E3-A65E-30EA091B9A89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9AF684BF-D5A3-48E3-A65E-30EA091B9A89}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9AF684BF-D5A3-48E3-A65E-30EA091B9A89}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9AF684BF-D5A3-48E3-A65E-30EA091B9A89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{378C0473-3B1E-4B68-BCAF-680EDC83D533}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{378C0473-3B1E-4B68-BCAF-680EDC83D533}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{378C0473-3B1E-4B68-BCAF-680EDC83D533}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{378C0473-3B1E-4B68-BCAF-680EDC83D533}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

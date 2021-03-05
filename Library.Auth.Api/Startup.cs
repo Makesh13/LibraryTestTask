@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Library.Auth.Api.Domain;
 using Microsoft.Extensions.Configuration;
 using Common; 
 
@@ -29,7 +28,7 @@ namespace Library.Auth.Api
             var authOptionsConfig = Config.GetSection("Auth");
             services.Configure<AuthOptions>(authOptionsConfig);
 
-            services.AddDbContext<AuthContext>(options=>options.UseNpgsql(this.Config.GetSection("Project").
+            services.AddDbContext<Common.ApplicationContext>(options=>options.UseNpgsql(this.Config.GetSection("Project").
                 GetSection("ConnectionString").Value));
         }
 

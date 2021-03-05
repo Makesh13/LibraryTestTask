@@ -3,8 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Common.Models;
 using Library.Resource.Api.Domain;
-using Library.Resource.Api.Models;
+//using Library.Resource.Api.Models;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Library.Resource.Api.Controllers

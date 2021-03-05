@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace Library.Auth.Api.Models
+namespace Common.Models
 {
     public class Role
     {

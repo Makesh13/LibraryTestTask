@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
@@ -15,6 +16,8 @@ namespace Common
         {
             return new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Secret));
         }
-        
+
     }
 }
+
+

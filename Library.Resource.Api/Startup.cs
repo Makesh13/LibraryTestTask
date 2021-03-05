@@ -11,6 +11,11 @@ using System.Threading.Tasks;
 using Library.Resource.Api.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authentication;
+using Common;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace Library.Resource.Api
 {
@@ -28,10 +33,37 @@ namespace Library.Resource.Api
         {
             services.AddControllers();
 
-            services.AddTransient<EFBooks>();
+            var authOptionsConfig = Config.GetSection("Auth").Get<AuthOptions>();
+
+            services.AddAuthentication(conf =>
+            {
+                conf.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                conf.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(
+                options =>
+                {
+                    options.RequireHttpsMetadata = false;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidIssuer = authOptionsConfig.Issuer,
+
+                        ValidateAudience = true,
+                        ValidAudience = authOptionsConfig.Audience,
+
+                        ValidateLifetime = true,
+
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = authOptionsConfig.GetSymetricSecurityKey()
+
+                    };
+                });
+
+
+        services.AddTransient<EFBooks>();
 
             //Пока не уверен насчет этого места!
-            services.AddDbContext<ApplicationContext>(options => options.
+            services.AddDbContext<Common.ApplicationContext>(options => options.
                 UseNpgsql(this.Config.GetSection("Project").GetSection("ConnectionString").Value));
         }
 
