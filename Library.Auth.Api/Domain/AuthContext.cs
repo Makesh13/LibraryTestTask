@@ -16,7 +16,7 @@ namespace Library.Auth.Api.Domain
 
         }
         public DbSet<Account> Accounts { get; set; }
-        public DbSet<Role> Roles { get; set; }
+        public DbSet<Role> Roles { get; private set; }
         protected override void OnModelCreating(ModelBuilder model)
         {
             model.Entity<Account>().HasData(new Account
