@@ -10,40 +10,41 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace Library.Resource.Api.Domain
 {
+    //Класс прослойка между контекстом и контроллером
     public class EFBooks
     {
         private ApplicationContext DbContext { get; }
         public EFBooks(ApplicationContext context)
         {
-            this.DbContext = context;
+            DbContext = context;
         }
 
         public IEnumerable<Book> GetBooks()
         {
-            return this.DbContext.Books;
+            return DbContext.Books;
         }
 
         public Book GetBook(Guid id)
         {
-            return this.DbContext.Books.FirstOrDefault(x => x.Id == id);
+            return DbContext.Books.FirstOrDefault(x => x.Id == id);
         }
 
         public void SaveBook(Book book)
         {
             if(book.Id == default)
             {
-                this.DbContext.Entry(book).State = EntityState.Added;
+                DbContext.Entry(book).State = EntityState.Added;
             }
             else
             {
-                this.DbContext.Entry(book).State = EntityState.Modified;
+                DbContext.Entry(book).State = EntityState.Modified;
             }
             DbContext.SaveChanges();
         }
 
         public void Delete(Guid id)
         {
-            this.DbContext.Books.Remove(new Book() { Id = id });
+            DbContext.Books.Remove(new Book() { Id = id });
             DbContext.SaveChanges();
         }
     }

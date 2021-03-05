@@ -34,7 +34,7 @@ namespace Common
                 Id = Guid.Parse("cdee6b90-d530-4e77-8980-5a845a88806a"),
                 PasswordHash = string.Concat(mySha256.ComputeHash(Encoding.UTF8.GetBytes("mypassword")).Select(x => x.ToString("X2"))),
                 UserName = "Makesh",
-                RoleId = 1,
+                RoleId = 2,
             });
             model.Entity<Account>().HasData(new Account
             {

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Common.Models;
 using Library.Resource.Api.Domain;
+using Microsoft.AspNetCore.Authorization;
+
 //using Library.Resource.Api.Models;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -34,6 +36,7 @@ namespace Library.Resource.Api.Controllers
         }
 
         // POST api/<BooksController>
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public void Post([FromBody] Book book)
         {
@@ -48,6 +51,7 @@ namespace Library.Resource.Api.Controllers
         }*/
 
         // DELETE api/<BooksController>/5
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public void Delete(Guid id)
         {
