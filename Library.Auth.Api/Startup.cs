@@ -26,9 +26,11 @@ namespace Library.Auth.Api
         {
             services.AddControllers();
 
-            var authOptionsConfig = Config.GetSection("Auth").Get<AuthOptions>
+            var authOptionsConfig = Config.GetSection("Auth");
+            services.Configure<AuthOptions>(authOptionsConfig);
 
-            services.AddDbContext<AuthContext>(options=>options.UseNpgsql(this.Config.GetSection("Project").GetSection("ConnectionString").Value));
+            services.AddDbContext<AuthContext>(options=>options.UseNpgsql(this.Config.GetSection("Project").
+                GetSection("ConnectionString").Value));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
