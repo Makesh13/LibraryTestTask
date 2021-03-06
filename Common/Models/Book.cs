@@ -13,5 +13,6 @@ namespace Common.Models
         public string Title { get; set; }
         public DateTime Year { get; set; }
         public string Gener { get; set; }
+        public string Author { get; set; }
     }
 }

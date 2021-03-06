@@ -61,6 +61,9 @@ namespace Common.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<string>("Author")
+                        .HasColumnType("text");
+
                     b.Property<string>("Gener")
                         .HasColumnType("text");
 
@@ -79,6 +82,7 @@ namespace Common.Migrations
                         new
                         {
                             Id = new Guid("e83b4bec-765b-4e13-a349-611ad5cda0cb"),
+                            Author = "Терри Пратчет",
                             Gener = "Юмористическое фэнтези",
                             Title = "Мор, ученик Смерти",
                             Year = new DateTime(1987, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)

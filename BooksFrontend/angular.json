@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "BooksFrontend"
+    }
+  },
+  "defaultProject": "BooksFrontend",
+  "cli": {
+    "analytics": false
+  }
 }

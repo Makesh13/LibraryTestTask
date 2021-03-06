@@ -27,7 +27,8 @@ namespace Common
                 Id = Guid.Parse("e83b4bec-765b-4e13-a349-611ad5cda0cb"),
                 Gener = "Юмористическое фэнтези",
                 Title = "Мор, ученик Смерти",
-                Year = new DateTime(1987, 01, 01)
+                Year = new DateTime(1987, 01, 01),
+                Author = "Терри Пратчет"
             });
             model.Entity<Account>().HasData(new Account
             {
