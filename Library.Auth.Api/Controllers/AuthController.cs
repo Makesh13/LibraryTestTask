@@ -83,7 +83,7 @@ namespace Library.Auth.Api.Controllers
 
             var token = new JwtSecurityToken(authParams.Issuer,
                 authParams.Audience,
-                claims, expires: DateTime.Now.AddSeconds(authParams.LifeTime),
+                claims, expires: DateTime.Now.AddHours(authParams.LifeTime),
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
