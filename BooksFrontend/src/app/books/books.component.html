@@ -1,1 +1,65 @@
-<p>books works!</p>
+<div class="container">
+  <!--Секция авторизации-->
+  <form class="card"[formGroup]="authForm" (ngSubmit)="authSubmit()" *ngIf="!isAuthorized && addingBook">
+    <!--Логин-->
+    <div class="form-control">
+      <label>Логин</label>
+      <input type="text" placeholder="Имя пользователя" [formControlName]="'username'">
+      <div
+        *ngIf="authForm.get('username').invalid && authForm.get('username').touched"
+        class="validation"
+      >
+        <smal
+          *ngIf="authForm.get('username').errors.required"
+        >Введите логин</smal>
+      </div>
+    </div>
+    <!---->
+
+    <!--Пароль-->
+    <div class="form-control">
+      <label>Пароль</label>
+      <input type="password" placeholder="Пароль" formControlName="password">
+      <div
+        *ngIf="authForm.get('password').invalid && authForm.get('password').touched"
+        class="validation"
+      >
+        <smal *ngIf="authForm.get('password').errors.required">Введите пароль</smal>
+      </div>
+    </div>
+    <!---->
+    <button class="btn" type="submit" [disabled]="authForm.invalid || authForm.pending">Отправить</button>
+  </form>
+  <!---->
+
+  <!--Списко книг-->
+  <div class="card" *ngFor="let book of books">
+    <div>
+      <b>Название: {{book.title}}</b>
+    </div>
+    <div>
+      <b>Автор: {{book.author}}</b>
+    </div>
+    <div>
+      <b>Год: {{book.year | date: 'yyyy'}}</b>
+    </div>
+    <div>
+      <b>Жанр: {{book.gener}}</b>
+    </div>
+  </div>
+  <!---->
+
+  <!--Добавление новой книги-->
+  <button class="btn" type="button" (click)="addBook()" *ngIf="!addingBook">Добавить Книгу</button>
+
+  <form class="book-form" [formGroup]="bookForm" (ngSubmit)="submit()" *ngIf="addingBook && isAuthorized" >
+    <div class="form-control"><input type="text" placeholder="Название" formControlName="title"></div>
+    <div class="form-control"><input type="text" placeholder="Автор" formControlName="author"></div>
+    <div class="form-control"><input type="text" placeholder="Год" formControlName="year"></div>
+    <div class="form-control"><input type="text" placeholder="Жанр" formControlName="gener"></div>
+    <button class="btn" type="submit" [disabled]="bookForm.invalid || bookForm.pending">Отправить</button>
+  </form>
+  <button class="btn" style="align-self: flex-end" type="button" *ngIf="isAuthorized">выйти</button>
+</div>
+
+<!---->

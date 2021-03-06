@@ -28,6 +28,13 @@ namespace Library.Auth.Api
             var authOptionsConfig = Config.GetSection("Auth");
             services.Configure<AuthOptions>(authOptionsConfig);
 
+            services.AddCors(options => options.AddDefaultPolicy(builder =>
+            {
+                builder.AllowAnyHeader();
+                builder.AllowAnyMethod();
+                builder.AllowAnyOrigin();
+            }));
+
             services.AddDbContext<Common.ApplicationContext>(options=>options.UseNpgsql(this.Config.GetSection("Project").
                 GetSection("ConnectionString").Value));
         }
@@ -41,6 +48,7 @@ namespace Library.Auth.Api
             }
 
             app.UseRouting();
+            app.UseCors();
 
             app.UseEndpoints(endpoints=>endpoints.MapControllers());
         }

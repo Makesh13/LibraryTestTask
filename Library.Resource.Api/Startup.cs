@@ -59,8 +59,13 @@ namespace Library.Resource.Api
                     };
                 });
 
-
-        services.AddTransient<EFBooks>();
+            services.AddCors(options => options.AddDefaultPolicy(builder =>
+            {
+                builder.AllowAnyHeader();
+                builder.AllowAnyMethod();
+                builder.AllowAnyOrigin();
+            }));
+            services.AddTransient<EFBooks>();
 
             //Пока не уверен насчет этого места!
             services.AddDbContext<Common.ApplicationContext>(options => options.
@@ -76,6 +81,7 @@ namespace Library.Resource.Api
             }
 
             app.UseRouting();
+            app.UseCors();
 
             app.UseAuthentication();
             app.UseAuthorization();
