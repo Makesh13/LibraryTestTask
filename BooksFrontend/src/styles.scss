@@ -52,7 +52,9 @@ img {
   margin-right: 0.5rem;
   transition: opacity 0.2s ease-in;
   outline: none;
-
+  &.delete{
+    background: red;
+  }
   &:disabled {
     background: #ccc;
     color: #000;

@@ -34,9 +34,7 @@ export class AuthService {
   isAuthenticated(): boolean
   {
     const token = localStorage.getItem(ACCESS_TOKEN_KEY);
-    console.log('tokenExpired = ', this.jwtHelper.isTokenExpired(token));
-    console.log('token = ', token);
-    return token && !this.jwtHelper.isTokenExpired(token);
+    return token && !this.jwtHelper.isTokenExpired(token) && this.jwtHelper.decodeToken(token).role === 'Admin';
   }
 
   logout(): void

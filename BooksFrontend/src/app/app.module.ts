@@ -9,7 +9,9 @@ import {environment} from '../environments/environment';
 import {JwtModule, JwtInterceptor} from '@auth0/angular-jwt';
 import {ACCESS_TOKEN_KEY} from './services/auth.service';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
+import {InterceptTokenService} from './services/intercept-token.service';
 import {ReactiveFormsModule} from '@angular/forms';
+import { EditComponent } from './edit/edit.component';
 
 export function tokenGetter(): any
 {
@@ -19,7 +21,8 @@ export function tokenGetter(): any
 @NgModule({
   declarations: [
     AppComponent,
-    BooksComponent
+    BooksComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
@@ -27,9 +30,7 @@ export function tokenGetter(): any
     HttpClientModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: tokenGetter,
-        whitelistedDomains: ['localhost:63680', 'localhost:59595'],
-        authScheme: 'JWT'
+        tokenGetter: tokenGetter
       }
     }),
     ReactiveFormsModule
@@ -44,8 +45,13 @@ export function tokenGetter(): any
       useValue: environment.libraryApi
     },
     {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptTokenService,
+      multi: true
+    },
+    /*{
       provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true
-    }
+    }*/
   ],
   bootstrap: [AppComponent]
 })

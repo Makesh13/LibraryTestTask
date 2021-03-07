@@ -19,11 +19,14 @@ export class BooksLibraryService {
   {
     return this.httpClient.get<Book[]>(`${this.librarryApi}api/books`);
   }
-  AddBook(book: Book): Observable<any>
+
+  addBook(book: Book): Observable<any>
   {
     const headers: Headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN_KEY));
     return this.httpClient.post<any>(`${this.librarryApi}api/books`, book, );
+  }
+  deleteBook(id: string): Observable<any>
+  {
+    return this.httpClient.delete<any>(`${this.librarryApi}api/books/${id}`);
   }
 }
