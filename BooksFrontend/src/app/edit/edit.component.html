@@ -1,0 +1,40 @@
+<div class="container">
+  <form class="card"[formGroup]="editForm" (ngSubmit)="edit()" *ngIf="isAuthorized">
+
+    <div class="form-control">
+      <label>Название</label>
+      <input type="text" placeholder="Название" [formControlName]="'title'">
+      <div
+        *ngIf="editForm.get('title').invalid && editForm.get('title').touched"
+        class="validation"
+      >
+        <smal
+          *ngIf="editForm.get('title').errors.required"
+        >Введите название</smal>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <label>Автор</label>
+      <input type="text" placeholder="Автор" formControlName="author">
+      <div
+        *ngIf="editForm.get('author').invalid && editForm.get('author').touched"
+        class="validation"
+      >
+        <smal *ngIf="editForm.get('author').errors.required">Укажите автора</smal>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <label>Год</label>
+      <input type="text" placeholder="Год" formControlName="year">
+    </div>
+
+    <div class="form-control">
+      <label>Жанр</label>
+      <input type="text" placeholder="Жанр" formControlName="gener">
+    </div>
+
+    <button class="btn" type="submit" (click)="edit()" [disabled]="editForm.invalid || editForm.pending">Сохранить</button>
+  </form>
+</div>
